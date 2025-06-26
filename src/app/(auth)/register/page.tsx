@@ -40,13 +40,16 @@ const page = () => {
       email: data.email,
       password: data.password,
     };
-    const response = await fetch(`${process.env.NEXT_BASEURL}/auth/signup`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASEURL}/auth/signup`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      }
+    );
     const result = await response.json();
     if (!response.ok) {
       console.error("Login failed:", result);
