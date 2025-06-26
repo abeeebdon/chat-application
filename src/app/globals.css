@@ -5,6 +5,10 @@
   --foreground: #171717;
 }
 
+@theme {
+  --color-primary-100: #6c63ff; /* updated to soft blue-purple */
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
