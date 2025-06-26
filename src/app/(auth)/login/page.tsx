@@ -3,6 +3,7 @@
 import CustomInput from "@/components/CustomInput";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 
@@ -20,6 +21,7 @@ const loginSchema = yup.object({
 });
 
 const Page = () => {
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -31,8 +33,23 @@ const Page = () => {
     },
   });
 
-  const onSubmit = (data: FormValue) => {
-    console.log("Form submitted with data:", data);
+  const onSubmit = async (data: FormValue) => {
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_BASEURL}/auth/login`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
+    const result = await response.json();
+    if (!response.ok) {
+      console.error("Login failed:", result);
+      return;
+    }
+    router.push("/");
     // e.g., send data to API
   };
 
