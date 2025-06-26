@@ -1,3 +1,6 @@
+"use client";
+import ChangeTheme from "@/components/ChangeTheme";
+
 export default function AuthLayout({
   children,
 }: {
@@ -13,7 +16,12 @@ export default function AuthLayout({
           Communicate like no other, bridge it and feel the presence
         </p>
       </article>
-      <div className="w-full ">{children}</div>
+      <div className="w-full relative">
+        <div className="absolute top-4 right-4 z-10">
+          <ChangeTheme />
+        </div>
+        {children}
+      </div>
     </main>
   );
 }
